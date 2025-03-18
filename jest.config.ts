@@ -3,15 +3,11 @@ import type { Config } from 'jest'
 
 const testCompiled = process.env.TEST_COMPILED === '1'
 
-const srcDir = testCompiled ? 'lib' : 'src'
-
 export default {
   collectCoverage: !testCompiled,
   modulePathIgnorePatterns: ['<rootDir>/test/fixtures/with-syntax-error'],
-  moduleNameMapper: {
-    '^eslint-plugin-import-x$': `<rootDir>/${srcDir}`,
-    '^eslint-plugin-import-x/package.json$': `<rootDir>/package.json`,
-    '^eslint-plugin-import-x/(.+)$': `<rootDir>/${srcDir}/$1`,
+  testEnvironmentOptions: {
+    customExportConditions: testCompiled ? undefined : ['epix'],
   },
   snapshotSerializers: ['<rootDir>/test/jest.serializer.ts'],
   testMatch: ['<rootDir>/test/**/*.spec.ts'],

@@ -12,9 +12,15 @@
   },
   "main": "lib/index.js",
   "exports": {
-    ".": "./lib/index.js",
+    ".": {
+      "epix": "./src/index.ts",
+      "default": "./lib/index.js"
+    },
     "./package.json": "./package.json",
-    "./*": "./lib/*"
+    "./*": {
+      "epix": "./src/*",
+      "default": "./lib/*"
+    }
   },
   "files": [
     "lib",
